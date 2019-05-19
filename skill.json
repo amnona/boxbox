@@ -1,0 +1,206 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "box box",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "for help"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "add_box",
+                    "slots": [
+                        {
+                            "name": "food",
+                            "type": "AMAZON.Food"
+                        },
+                        {
+                            "name": "boxnum",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "i said box number {boxnum}",
+                                "box number {boxnum}",
+                                "number {boxnum}",
+                                "i said box {boxnum}",
+                                "i said {boxnum}",
+                                "{boxnum}",
+                                "box {boxnum}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "put {food} in box number {boxnum}",
+                        "add {food} to box number {boxnum}",
+                        "add {food} to box {boxnum}",
+                        "put {food} in box {boxnum}"
+                    ]
+                },
+                {
+                    "name": "query_box",
+                    "slots": [
+                        {
+                            "name": "boxnum",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "it is box number {boxnum}",
+                                "it is box {boxnum}",
+                                "box {boxnum}",
+                                "{boxnum}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "what's in {boxnum}",
+                        "what is in {boxnum}",
+                        "what's in box number {boxnum}",
+                        "what's in box {boxnum}",
+                        "what is in box number {boxnum}",
+                        "what is in box {boxnum}"
+                    ]
+                },
+                {
+                    "name": "inventory",
+                    "slots": [],
+                    "samples": [
+                        "what's in my fridge",
+                        "what is in my boxes",
+                        "what foods do i have",
+                        "what is in the fridge",
+                        "what do i have",
+                        "what is in my fridge"
+                    ]
+                },
+                {
+                    "name": "remove_box",
+                    "slots": [
+                        {
+                            "name": "boxnum",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "throw box number {boxnum}",
+                        "delete box number {boxnum}",
+                        "remove box number {boxnum}",
+                        "throw box {boxnum}",
+                        "delete box {boxnum}",
+                        "remove box {boxnum}"
+                    ]
+                },
+                {
+                    "name": "delete_all",
+                    "slots": [],
+                    "samples": [
+                        "throw away all boxes",
+                        "remove all boxes",
+                        "delete all boxes",
+                        "restart",
+                        "throw away all",
+                        "remove all",
+                        "delete all"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "delete_all",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1062894904502"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "add_box",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "food",
+                            "type": "AMAZON.Food",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "boxnum",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.630725525661.899719983286"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "query_box",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "boxnum",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.838365517546.857872363814"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent.1062894904502",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "are you sure you want to throw away everything?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.630725525661.899719983286",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "please tell me in what box to put the food"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.838365517546.857872363814",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what box?"
+                    }
+                ]
+            }
+        ]
+    }
+}
